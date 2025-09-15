@@ -2,6 +2,7 @@
     --primary_color: #040404;        /* deep black */
     --secondary_color: #FFFFFF;      /* crisp white */
     --background_color: #212121;     /* dark gray background */
+    --light_background_color: #333333;
     
     /* new tones with a subtle blue influence */
     --accent_color: #3A7CA5;         /* steel blue accent */
@@ -36,15 +37,14 @@ main {
     height: 80%;
     width: 90%;
     display: grid;
-    grid-template-columns: clamp(300px, 20vw, 500px) 1fr;
-    grid-template-rows: 175px 1fr;
+    grid-template-columns: clamp(250px, 20vw, 500px) 1fr;
+    grid-template-rows: 1fr;
     margin: 0;
 }
 
+/* HEADER */
+
 header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: var(--secondary_color);
     border-radius: 20px;
     padding: 5px;
@@ -52,8 +52,34 @@ header {
     box-shadow: 2.5px 5px 10px 1px var(--secondary_color);
 }
 
-header h1 {
-    color: var(--primary_color);
+/* SIDEBAR */
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 75px;
+    color: var(--secondary_color);
     font-size: 40px;
-    font-family: "Libertinus Keyboard", system-ui;
+    font-weight: lighter;
+}
+
+#sidebar {
+    height: 100%;
+    background-color: var(--light_background_color);
+    color: var(--secondary_color);
+    font-family: "Quicksand", sans-serif;
+    padding: 20px;
+    text-align: left;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    font-size: 20px;
+    line-height: 2;
+    padding-left: 5%;
+}
+
+#sidebar div {
+    margin-left: 10px;
 }
