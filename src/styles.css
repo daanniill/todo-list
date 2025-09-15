@@ -1,0 +1,59 @@
+:root {
+    --primary_color: #040404;        /* deep black */
+    --secondary_color: #FFFFFF;      /* crisp white */
+    --background_color: #212121;     /* dark gray background */
+    
+    /* new tones with a subtle blue influence */
+    --accent_color: #3A7CA5;         /* steel blue accent */
+    --highlight_color: #5DA9E9;      /* lighter sky blue highlight */
+    --muted_color: #1E2A35;          /* desaturated blue-gray for surfaces */
+    --border_color: #2E3B47;         /* subtle border shade */
+    --text_secondary: #AAB8C2;       /* soft gray-blue text */
+}
+
+/* GLOBAL */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* padding + border stay inside width/height */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--background_color);
+}
+
+/* MAIN */
+
+main {
+    background-color: var(--primary_color);
+    height: 80%;
+    width: 90%;
+    display: grid;
+    grid-template-columns: clamp(300px, 20vw, 500px) 1fr;
+    grid-template-rows: 175px 1fr;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary_color);
+    border-radius: 20px;
+    padding: 5px;
+    transform: translateX(-5px) translateY(-5px);
+    box-shadow: 2.5px 5px 10px 1px var(--secondary_color);
+}
+
+header h1 {
+    color: var(--primary_color);
+    font-size: 40px;
+    font-family: "Libertinus Keyboard", system-ui;
+}
