@@ -83,3 +83,15 @@ h1 {
 #sidebar div {
     margin-left: 10px;
 }
+
+/* SIDEBAR PROJECT CARDS */
+
+.proj_side {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 2fr;
+}
+
+.proj_side img {
+    height: 18px;
+}
