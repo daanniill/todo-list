@@ -89,9 +89,31 @@ h1 {
 .proj_side {
     width: 90%;
     display: grid;
-    grid-template-columns: 2fr;
+    grid-template-columns: 70% 30%;
+    background-color: var(--background_color);
+    padding: 20px 10px 20px 10px;
+    border-radius: 15px;
+    margin: 10px 0 10px 0;
+}
+
+.proj_side h4{
+    font-size: 12px;
+    text-align: left;
+    margin-right: 5px;
+    overflow: hidden;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;        /* keep text on one line */
+    text-overflow: ellipsis;
 }
 
 .proj_side img {
     height: 18px;
+    margin: 0 2px 0 2px;
+}
+
+#control_side {
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
