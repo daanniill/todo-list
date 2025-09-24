@@ -17,6 +17,24 @@
     display: grid;
     grid-template-columns: 1fr 7fr 3fr;
     color: var(--secondary_color);
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.card:hover {
+    background-color: var(--muted_color);
+    outline: 0;
+}
+
+.card:focus {
+    background-color: var(--secondary_color);   /* light background */
+    color: var(--primary_color);                /* switch text color */
+}
+
+.card:focus .description h1,
+.card:focus .description h2,
+.card:focus .details {
+    color: var(--primary_color);                /* darker text for contrast */
 }
 
 .card > :first-child {
@@ -25,7 +43,6 @@
     align-items: center;
     flex-direction: column;
 }
-
 
 .description {
     padding: 0 10px 0 20px;
