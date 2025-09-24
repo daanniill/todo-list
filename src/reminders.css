@@ -26,9 +26,6 @@
     flex-direction: column;
 }
 
-.card > div {
-    outline: 2px solid blue;
-}
 
 .description {
     padding: 0 10px 0 20px;
@@ -43,7 +40,7 @@
     transform: translateX(-5px);
 }
 
-.description h4{
+.description h2{
     color: var(--text_secondary);
     font-size: 15px;
     transform: translateX(5px);
@@ -54,4 +51,29 @@
     height: 15px;
     border-radius: 100%;
     outline: 2px solid var(--text_secondary);
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    color: var(--text_secondary);
+    padding-right: 20px;
+}
+
+#priority {
+    color: var(--secondary_color);
+    background-color: var(--accent_color);
+    padding: 2px 5px 2px 5px;
+    border-radius: 7px;
+    font-weight: bolder;
+}
+
+#date, #category {
+    font-size: 13px;
+}
+
+#category {
+    font-weight: bolder;
 }
