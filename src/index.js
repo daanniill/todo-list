@@ -79,12 +79,24 @@ class Project {
     }
 }
 
-//pre-populate projects
-let project1 = new Project("Chores")
-let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "09/12/2025", "")
+//date manager
+class Calendar {
+    constructor() {
+        this._tasksByDate = {};
+    }
 
-project1.addTask(task1)
-projects.push(project1)
+    addTask(task) {
+        const dateKey = task.date;
+        if (!this._tasksByDate[dateKey]) {
+            this._tasksByDate[dateKey] = [];
+        }
+        this._tasksByDate[dateKey].push(task);
+    }
+
+    getTasksByDate(dateStr) {
+        return this._tasksByDate[dateStr] || [];
+    }
+}
 
 //showing projects on page
 function display_projects() {
@@ -126,3 +138,10 @@ function display_projects() {
 }
 
 display_projects()
+
+//pre-populate projects
+let project1 = new Project("Chores")
+let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "09/12/2025", "")
+
+project1.addTask(task1)
+projects.push(project1)
