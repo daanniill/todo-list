@@ -1,11 +1,12 @@
-import deleteImg from "./assets/delete.png";
-import editImg from "./assets/edit.png";
-
 import "./styles.css"
 import "./reminders.css"
 
+import { display_all_tasks, display_projects } from "./displayDriver";
+
 //storage
 let projects = []
+
+export { projects }
 
 //class prototypes
 class Task {
@@ -98,50 +99,11 @@ class Calendar {
     }
 }
 
-//showing projects on page
-function display_projects() {
-    const sidebar = document.querySelector(".projects");
-
-    projects.forEach(project => {
-        // main container
-        const projDiv = document.createElement("div");
-        projDiv.classList.add("proj_side");
-        projDiv.setAttribute("tabindex", "0");
-
-        // project title
-        const heading = document.createElement("h4");
-        heading.textContent = project.title;
-
-        // control container
-        const controlDiv = document.createElement("div");
-        controlDiv.id = "control_side";
-
-        // edit icon
-        const editIcon = document.createElement("img");
-        editIcon.id = "edit_icon";
-        editIcon.src = editImg;
-
-        // delete icon
-        const deleteIcon = document.createElement("img");
-        deleteIcon.id = "delete_icon";
-        deleteIcon.src = deleteImg;
-
-        // assemble
-        controlDiv.appendChild(editIcon);
-        controlDiv.appendChild(deleteIcon);
-
-        projDiv.appendChild(heading);
-        projDiv.appendChild(controlDiv);
-
-        sidebar.append(projDiv)
-    });
-}
-
-display_projects()
-
 //pre-populate projects
 let project1 = new Project("Chores")
 let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "09/12/2025", "")
 
 project1.addTask(task1)
 projects.push(project1)
+
+display_projects()
