@@ -1,12 +1,26 @@
 import deleteImg from "./assets/delete.png";
 import editImg from "./assets/edit.png";
 
-import { projects } from ".";
+import { projects, calendar } from ".";
 
 function task_button_driver() {
     document.querySelector("#all_tasks").addEventListener("focus", () => {
+        clear_board()
         display_all_tasks();
     });
+    document.querySelector("#today_tasks").addEventListener("focus", () => {
+        clear_board()
+        display_today_tasks();
+    });
+    document.querySelector("#week_tasks").addEventListener("focus", () => {
+        clear_board()
+        display_weekly_tasks();
+    });
+
+}
+
+function clear_board() {
+    document.querySelector("#board").innerHTML = "";
 }
 
 function display_task(task) {
@@ -65,7 +79,7 @@ function display_task(task) {
 }
 
 //showing projects on page
-export const display_projects = () => {
+function display_projects() {
     task_button_driver()
     const sidebar = document.querySelector(".projects");
 
@@ -105,10 +119,37 @@ export const display_projects = () => {
 }
 
 //displaying all tasks on board
-export const display_all_tasks = () => {
+function display_all_tasks(){
     projects.forEach(project => {
         project.tasks.forEach(task => {
             display_task(task);
         });
     });
+}
+
+//display daily tasks
+function display_today_tasks() {
+    const date = new Date()
+    const curdate = date.toISOString().split('T')[0];
+    calendar.getTasksByDate(curdate).forEach(task => {
+        display_task(task);
+    });
+}
+
+//display weekly tasks
+function display_weekly_tasks() {
+    const date = new Date()
+    const curdate = date.toISOString().split('T')[0];
+    let all = calendar.getWeeklyTasks(curdate)
+    all.forEach(task => {
+        display_task(task);
+    })
+    
+}
+
+//driver activate
+export const display_driver = () => {
+    display_all_tasks()
+    display_projects()
+    task_button_driver()
 }

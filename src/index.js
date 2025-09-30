@@ -1,12 +1,12 @@
 import "./styles.css"
 import "./reminders.css"
 
-import { display_all_tasks, display_projects } from "./displayDriver";
+import { display_driver } from "./displayDriver";
 
 //storage
 let projects = []
 
-export { projects }
+export { projects, calendar }
 
 //class prototypes
 class Task {
@@ -94,16 +94,53 @@ class Calendar {
         this._tasksByDate[dateKey].push(task);
     }
 
+    buildFromProjects(projects) {
+        this._tasksByDate = {}; 
+        projects.forEach(project => {
+            project.tasks.forEach(task => {
+                this.addTask(task);
+            });
+        });
+    }
+
     getTasksByDate(dateStr) {
         return this._tasksByDate[dateStr] || [];
+    }
+
+    getWeeklyTasks(date = new Date()){
+        const tasks = [];
+
+        const start = new Date(date);
+        start.setDate(start.getDate() -  start.getDay());
+
+        const end = new Date(start);
+        end.setDate(start.getDate() + 6);
+
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+            const key = d.toISOString().split("T")[0];
+            if (this._tasksByDate[key]) {
+                tasks.push(...this._tasksByDate[key]);
+            }
+        }
+
+        return tasks || [];
     }
 }
 
 //pre-populate projects
+let calendar = new Calendar()
+
 let project1 = new Project("Chores")
-let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "09/12/2025", "")
+let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "2025-09-25", "")
+let task2 = new Task("test task", "Small task that I need to do.", "Low", "2025-09-30", "")
+let task3 = new Task("good task", "Small task that I need to do.", "Low", "2025-10-01", "")
+let task4 = new Task("bad task", "Small task that I need to do.", "Low", "2025-09-20", "")
 
 project1.addTask(task1)
+project1.addTask(task2)
+project1.addTask(task3)
+project1.addTask(task4)
 projects.push(project1)
+calendar.buildFromProjects(projects)
 
-display_projects()
+display_driver()
