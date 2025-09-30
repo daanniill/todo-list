@@ -107,6 +107,11 @@ class Calendar {
         return this._tasksByDate[dateStr] || [];
     }
 
+    getDailyTasks(today = new Date()) {
+        const todayKey = today.toISOString().split("T")[0];
+        return this._tasksByDate[todayKey] || [];
+    }
+
     getWeeklyTasks(date = new Date()){
         const tasks = [];
 
@@ -120,6 +125,20 @@ class Calendar {
             const key = d.toISOString().split("T")[0];
             if (this._tasksByDate[key]) {
                 tasks.push(...this._tasksByDate[key]);
+            }
+        }
+
+        return tasks || [];
+    }
+
+    getOverdueTasks(today = new Date()) {
+        const tasks = [];
+
+        const todayKey = today.toISOString().split("T")[0];
+
+        for (const dateKey in this._tasksByDate) {
+            if (dateKey < todayKey) { 
+                tasks.push(...this._tasksByDate[dateKey]);
             }
         }
 

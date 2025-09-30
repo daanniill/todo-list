@@ -16,6 +16,10 @@ function task_button_driver() {
         clear_board()
         display_weekly_tasks();
     });
+    document.querySelector("#overdue_tasks").addEventListener("focus", () => {
+        clear_board()
+        display_overdue_tasks();
+    });
 
 }
 
@@ -138,13 +142,17 @@ function display_today_tasks() {
 
 //display weekly tasks
 function display_weekly_tasks() {
-    const date = new Date()
-    const curdate = date.toISOString().split('T')[0];
-    let all = calendar.getWeeklyTasks(curdate)
+    let all = calendar.getWeeklyTasks()
     all.forEach(task => {
         display_task(task);
     })
-    
+}
+
+function display_overdue_tasks() {
+    let all = calendar.getOverdueTasks()
+    all.forEach(task => {
+        display_task(task);
+    })
 }
 
 //driver activate
