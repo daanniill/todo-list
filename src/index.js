@@ -150,16 +150,22 @@ class Calendar {
 let calendar = new Calendar()
 
 let project1 = new Project("Chores")
-let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "2025-09-25", "")
-let task2 = new Task("test task", "Small task that I need to do.", "Low", "2025-09-30", "")
-let task3 = new Task("good task", "Small task that I need to do.", "Low", "2025-10-01", "")
-let task4 = new Task("bad task", "Small task that I need to do.", "Low", "2025-09-20", "")
+let project2 = new Project("Daily")
+let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "2025-09-25", project1.title)
+let task2 = new Task("test task", "Small task that I need to do.", "Low", "2025-09-30", project1.title)
+let task3 = new Task("good task", "Small task that I need to do.", "Low", "2025-10-01", project1.title)
+let task4 = new Task("bad task", "Small task that I need to do.", "Low", "2025-09-20", project1.title)
+let task5 = new Task("proj2 task", "Small task that I need to do. chat chat", "Low", "2025-10-04", project2.title)
 
 project1.addTask(task1)
 project1.addTask(task2)
 project1.addTask(task3)
 project1.addTask(task4)
+
+project2.addTask(task5)
+
 projects.push(project1)
+projects.push(project2)
 calendar.buildFromProjects(projects)
 
 display_driver()

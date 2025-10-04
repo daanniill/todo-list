@@ -20,7 +20,6 @@ function task_button_driver() {
         clear_board()
         display_overdue_tasks();
     });
-
 }
 
 function clear_board() {
@@ -118,6 +117,12 @@ function display_projects() {
         projDiv.appendChild(heading);
         projDiv.appendChild(controlDiv);
 
+        projDiv.addEventListener("focus", () => {
+            clear_board();
+            const projectTitle = heading.textContent;
+            display_project_tasks(projectTitle);
+        });
+
         sidebar.append(projDiv)
     });
 }
@@ -153,6 +158,17 @@ function display_overdue_tasks() {
     all.forEach(task => {
         display_task(task);
     })
+}
+
+function display_project_tasks(project_title) {
+    projects.forEach(project => {
+        if (project.title === project_title){
+            project.tasks.forEach(task => {
+                display_task(task);
+            });
+        };
+    });
+    
 }
 
 //driver activate
