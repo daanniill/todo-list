@@ -1,0 +1,27 @@
+/* DIALOG MODAL */
+dialog {
+    z-index: 3;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background: var(--text-color);
+    width: 300px;
+    height: 400px;
+    /* Center it */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--quaternary-color);
+}
+
+dialog[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+dialog::backdrop {
+    background: rgba(255, 255, 255, 0.1); /* faint translucent */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+}

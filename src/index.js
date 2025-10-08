@@ -1,5 +1,6 @@
 import "./styles.css"
 import "./reminders.css"
+import "./dialog.css"
 
 import { display_driver } from "./displayDriver";
 

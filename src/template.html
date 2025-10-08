@@ -9,6 +9,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Libertinus+Keyboard&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <dialog class="edit_add">
+        <form class="task">
+            <input type="text" id="title" name="title" 
+                    required maxlength="30" 
+                    pattern=".{1,30}" 
+                    title="Title must be 1–30 characters">
+
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" 
+                    required maxlength="100" 
+                    pattern=".{1,100}" 
+                    title="Description name must be 1–100 characters">
+
+                <label for="low">Low: </label>
+                <input type="radio" id="low" name="priority">
+                <label for="medium">Medium: </label>
+                <input type="radio" id="medium" name="priority">
+                <label for="High">High: </label>
+                <input type="radio" id="High" name="priority">
+
+                <label for="date_task">Date:</label>
+                <input type="date" id="date_task" name="date_task">
+
+                <div class="projects_dialog">
+
+                </div>
+                <button type="submit" id="submit">Create</button>
+        </form>
+    </dialog>
     <main id="main">
         <div id="sidebar">
             <h1>TASKLY</h1>
@@ -27,7 +56,6 @@
                 <h3>Projects</h3>
             </div>
         </div>
-
         <div id="board">
             <div class="card" tabindex="0">
                 <div>
