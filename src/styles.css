@@ -65,9 +65,11 @@ header {
 }
 
 #sidebar h2 {
+    margin-top: auto;
     height: 50px;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 10px;
     cursor: pointer;
     background: var(--secondary_color);
@@ -81,12 +83,16 @@ header {
 }
 
 #sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
     background-color: var(--light_background_color);
     color: var(--secondary_color);
     font-family: "Quicksand", sans-serif;
     padding: 20px;
     text-align: left;
+    position: relative;
 }
 
 #sidebar ul {
@@ -120,6 +126,27 @@ a:focus {
     margin-left: 10px;
 }
 
+#projects_container {
+    position: relative;
+    height: 250px;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+#projects_container {
+    position: relative;
+    height: 250px;
+    overflow-y: auto;
+    background-color: var(--light_background_color);
+    padding: 10px 0 40px; /* extra bottom padding = space under the fade */
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0,       /* Top edge starts transparent */
+        black 32px,          /* Fade to opaque within 32px */
+        black calc(100% - 32px), /* Fade from opaque 32px from the bottom */
+        transparent 100%     /* Bottom edge is transparent */
+  );
+}
 /* SIDEBAR PROJECT CARDS */
 
 .proj_side {

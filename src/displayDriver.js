@@ -84,7 +84,7 @@ function display_task(task) {
 //showing projects on page
 function display_projects() {
     task_button_driver()
-    const sidebar = document.querySelector(".projects");
+    const sidebar = document.querySelector("#projects_container");
 
     projects.forEach(project => {
         // main container
