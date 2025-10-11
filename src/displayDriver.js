@@ -26,6 +26,7 @@ function dialog_open() {
     const modal = document.querySelector("dialog")
     document.querySelector("#add_task").addEventListener("click", () => {
         modal.showModal()
+        update_dropdown()
     });
     document.querySelector("#close").addEventListener("click", () => {
         modal.close()
@@ -33,11 +34,31 @@ function dialog_open() {
 
 }
 
+function update_dropdown() {
+    const dropdown = document.getElementById("projects_dropdown");
+    dropdown.innerHTML = ""; // clear existing options
+
+    // Add a default placeholder option
+    const defaultOption = document.createElement("option");
+    defaultOption.textContent = "Select...";
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    dropdown.appendChild(defaultOption);
+
+    // Add each project from the projects array
+    projects.forEach(project => {
+        const option = document.createElement("option");
+        option.value = project.title;
+        option.textContent = project.title;
+        dropdown.appendChild(option);
+    });
+}
+
 function clear_board() {
     document.querySelector("#board").innerHTML = "";
 }
 
-function display_task(task) {
+export const display_task = (task) => {
     // main card
     const card = document.createElement("div");
     card.classList.add("card");

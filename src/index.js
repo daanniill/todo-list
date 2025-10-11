@@ -8,6 +8,7 @@ import { display_driver } from "./displayDriver";
 let projects = []
 
 export { projects, calendar }
+import { display_task } from "./displayDriver";
 
 //class prototypes
 class Task {
@@ -149,27 +150,28 @@ class Calendar {
 
 function gather_task_data() {
     const form = document.querySelector(".task")
+    const dialog = document.querySelector("dialog")
 
     form.addEventListener("submit", function(e) {
         e.preventDefault(); // Stop default submit
         const formData = new FormData(e.target); 
 
+        const selectedRadio = document.querySelector('input[name="priority"]:checked');
         
         const task = new Task(
             formData.get('title'),
             formData.get('description'), 
-            formData.get('priority_selection'), 
-            formData.get('pages'), 
-            formData.has('book_complete'),
-            color)
-        colorBtns.forEach(btn => {
-            btn.style.outline = '0';
-        })
+            selectedRadio.value, 
+            formData.get('date_task'), 
+            formData.get("projects_dropdown")
+            );
+        
 
-        library.push(book)
-        color = "blue"
-        update_library()
-        form.reset();
+        let targetProject = projects.find(p => p.title === formData.get("projects_dropdown"));
+        targetProject.addTask(task);
+        calendar.buildFromProjects(projects);
+        display_task(task)
+        form.reset()
         dialog.close(); // closes the modal
     });
 }
@@ -196,4 +198,5 @@ projects.push(project1)
 projects.push(project2)
 calendar.buildFromProjects(projects)
 
+gather_task_data()
 display_driver()
