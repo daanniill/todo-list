@@ -145,8 +145,9 @@ a:focus {
         black 32px,          /* Fade to opaque within 32px */
         black calc(100% - 32px), /* Fade from opaque 32px from the bottom */
         transparent 100%     /* Bottom edge is transparent */
-  );
+    );
 }
+
 /* SIDEBAR PROJECT CARDS */
 
 .proj_side {

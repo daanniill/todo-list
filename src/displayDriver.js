@@ -22,6 +22,17 @@ function task_button_driver() {
     });
 }
 
+function dialog_open() {
+    const modal = document.querySelector("dialog")
+    document.querySelector("#add_task").addEventListener("click", () => {
+        modal.showModal()
+    });
+    document.querySelector("#close").addEventListener("click", () => {
+        modal.close()
+    });
+
+}
+
 function clear_board() {
     document.querySelector("#board").innerHTML = "";
 }
@@ -173,6 +184,7 @@ function display_project_tasks(project_title) {
 
 //driver activate
 export const display_driver = () => {
+    dialog_open()
     display_all_tasks()
     display_projects()
     task_button_driver()

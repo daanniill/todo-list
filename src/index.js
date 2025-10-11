@@ -147,6 +147,33 @@ class Calendar {
     }
 }
 
+function gather_task_data() {
+    const form = document.querySelector(".task")
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault(); // Stop default submit
+        const formData = new FormData(e.target); 
+
+        
+        const task = new Task(
+            formData.get('title'),
+            formData.get('description'), 
+            formData.get('priority_selection'), 
+            formData.get('pages'), 
+            formData.has('book_complete'),
+            color)
+        colorBtns.forEach(btn => {
+            btn.style.outline = '0';
+        })
+
+        library.push(book)
+        color = "blue"
+        update_library()
+        form.reset();
+        dialog.close(); // closes the modal
+    });
+}
+
 //pre-populate projects
 let calendar = new Calendar()
 

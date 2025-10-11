@@ -71,3 +71,25 @@ dialog::backdrop {
     color: var(--secondary_color);
     transition: 0.25s;
 }
+
+#close_dialog {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#close_dialog p {
+    margin: 0;
+    padding: -10px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#close_dialog p:hover {
+    color: crimson;
+    transform: scale(1.1);
+}
+
+
