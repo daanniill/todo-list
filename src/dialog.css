@@ -27,8 +27,8 @@ dialog::backdrop {
     -webkit-backdrop-filter: blur(10px); /* Safari support */
 }
 
-/* TASK */
-.task {
+/* TASK FORM */
+.task, .project_form{
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@ dialog::backdrop {
     justify-content: center;
 }
 
-.task > input, #projects_dropdown {
+.task>input, .project_form>input, #projects_dropdown {
     margin: 0 0 10px 0;
     width: 75%;
     padding: 10px;
@@ -72,13 +72,13 @@ dialog::backdrop {
     transition: 0.25s;
 }
 
-#close_dialog {
+#close_dialog_proj, #close_dialog_task {
     width: 100%;
     display: flex;
     justify-content: flex-end;
 }
 
-#close_dialog p {
+#close_dialog_proj p, #close_dialog_task p {
     margin: 0;
     padding: -10px 10px;
     font-size: 20px;
@@ -87,9 +87,17 @@ dialog::backdrop {
     transition: 0.2s;
 }
 
-#close_dialog p:hover {
+#close_dialog_proj p:hover, #close_dialog_task p:hover {
     color: crimson;
     transform: scale(1.1);
 }
 
+/* PROJECT FORM */
 
+.project_form #close_dialog{
+    margin: -10px;
+}
+
+.create_project {
+    height: auto;
+}

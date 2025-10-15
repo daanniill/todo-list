@@ -23,13 +23,23 @@ function task_button_driver() {
 }
 
 function dialog_open() {
-    const modal = document.querySelector("dialog")
+    const modal_task = document.querySelector(".edit_add")
+    const modal_project = document.querySelector(".create_project")
+    // tasks dialog
     document.querySelector("#add_task").addEventListener("click", () => {
-        modal.showModal()
+        modal_task.showModal()
         update_dropdown()
     });
-    document.querySelector("#close").addEventListener("click", () => {
-        modal.close()
+    document.querySelector("#close_dialog_proj").addEventListener("click", () => {
+        modal_project.close()
+    });
+    document.querySelector("#close_dialog_task").addEventListener("click", () => {
+        modal_task.close()
+    });
+
+    //projects dialog
+    document.querySelector("#new_project").addEventListener("click", () =>{
+        modal_project.show()
     });
 
 }
@@ -114,9 +124,11 @@ export const display_task = (task) => {
 }
 
 //showing projects on page
-function display_projects() {
+export const display_projects = () => {
     task_button_driver()
     const sidebar = document.querySelector("#projects_container");
+
+    sidebar.innerHTML = "";
 
     projects.forEach(project => {
         // main container

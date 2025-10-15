@@ -9,9 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Libertinus+Keyboard&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <dialog class="create_project">
+        <form class="project_form">
+            <div id="close_dialog_proj">
+                <p id="close">x</p>
+            </div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" 
+                    required maxlength="30" 
+                    pattern=".{1,30}" 
+                    title="Title must be 1–30 characters">
+            <button type="submit" id="submit">Create</button>
+        </form>
+    </dialog>
     <dialog class="edit_add">
         <form class="task">
-            <div id="close_dialog">
+            <div id="close_dialog_task">
                 <p id="close">x</p>
             </div>
             <label for="title">Title:</label>
@@ -62,7 +75,7 @@
                 </ul>
             </div>
             <div class="projects">
-                <h3>Projects</h3>
+                <h3 id="new_project">Projects +</h3>
                 <div id="projects_container">
                     
                 </div>

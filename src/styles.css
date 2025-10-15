@@ -42,6 +42,18 @@ main {
     margin: 0;
 }
 
+#board {
+    overflow-y: auto;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0,       /* Top edge starts transparent */
+        black 32px,          /* Fade to opaque within 32px */
+        black calc(100% - 32px), /* Fade from opaque 32px from the bottom */
+        transparent 100%     /* Bottom edge is transparent */
+    );
+
+}
+
 /* HEADER */
 
 header {
@@ -147,6 +159,19 @@ a:focus {
         transparent 100%     /* Bottom edge is transparent */
     );
 }
+
+.projects h3 {
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.projects h3:hover {
+    font-size: 20px;
+    margin-bottom: -2.6px;
+    transition: 0.25s;
+}
+
 
 /* SIDEBAR PROJECT CARDS */
 

@@ -2,13 +2,13 @@ import "./styles.css"
 import "./reminders.css"
 import "./dialog.css"
 
-import { display_driver } from "./displayDriver";
+import { display_driver} from "./displayDriver";
 
 //storage
 let projects = []
 
 export { projects, calendar }
-import { display_task } from "./displayDriver";
+import { display_task, display_projects} from "./displayDriver";
 
 //class prototypes
 class Task {
@@ -150,7 +150,7 @@ class Calendar {
 
 function gather_task_data() {
     const form = document.querySelector(".task")
-    const dialog = document.querySelector("dialog")
+    const dialog = document.querySelector(".edit_add")
 
     form.addEventListener("submit", function(e) {
         e.preventDefault(); // Stop default submit
@@ -176,6 +176,25 @@ function gather_task_data() {
     });
 }
 
+function gather_project_data() {
+    const form = document.querySelector(".project_form")
+    const dialog = document.querySelector(".create_project")
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault(); // Stop default submit
+        const formData = new FormData(e.target); 
+        
+        const newProj = new Project(
+            formData.get('title')
+            );
+        
+        projects.push(newProj);
+        calendar.buildFromProjects(projects);
+        display_projects()
+        form.reset()
+        dialog.close(); // closes the modal
+    });
+}
 //pre-populate projects
 let calendar = new Calendar()
 
@@ -199,4 +218,5 @@ projects.push(project2)
 calendar.buildFromProjects(projects)
 
 gather_task_data()
+gather_project_data()
 display_driver()
