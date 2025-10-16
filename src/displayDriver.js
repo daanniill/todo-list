@@ -1,7 +1,8 @@
 import deleteImg from "./assets/delete.png";
 import editImg from "./assets/edit.png";
 
-import { projects, calendar } from ".";
+import { calendar } from ".";
+import { projects } from "./localStorageFunc";
 
 function task_button_driver() {
     document.querySelector("#all_tasks").addEventListener("focus", () => {

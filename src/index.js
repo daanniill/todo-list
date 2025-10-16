@@ -3,12 +3,12 @@ import "./reminders.css"
 import "./dialog.css"
 
 import { display_driver} from "./displayDriver";
+import { projects } from "./localStorageFunc";
+import { saveProjects, loadProjects } from "./localStorageFunc";
 
-//storage
-let projects = []
-
-export { projects, calendar }
+export { calendar }
 import { display_task, display_projects} from "./displayDriver";
+
 
 //class prototypes
 class Task {
@@ -170,6 +170,7 @@ function gather_task_data() {
         let targetProject = projects.find(p => p.title === formData.get("projects_dropdown"));
         targetProject.addTask(task);
         calendar.buildFromProjects(projects);
+        saveProjects();
         display_task(task)
         form.reset()
         dialog.close(); // closes the modal
@@ -190,6 +191,7 @@ function gather_project_data() {
         
         projects.push(newProj);
         calendar.buildFromProjects(projects);
+        saveProjects();
         display_projects()
         form.reset()
         dialog.close(); // closes the modal
@@ -198,25 +200,34 @@ function gather_project_data() {
 //pre-populate projects
 let calendar = new Calendar()
 
-let project1 = new Project("Chores")
-let project2 = new Project("Daily")
-let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "2025-09-25", project1.title)
-let task2 = new Task("test task", "Small task that I need to do.", "Low", "2025-09-30", project1.title)
-let task3 = new Task("good task", "Small task that I need to do.", "Low", "2025-10-01", project1.title)
-let task4 = new Task("bad task", "Small task that I need to do.", "Low", "2025-09-20", project1.title)
-let task5 = new Task("proj2 task", "Small task that I need to do. chat chat", "Low", "2025-10-04", project2.title)
+let loadedProjects = loadProjects();
 
-project1.addTask(task1)
-project1.addTask(task2)
-project1.addTask(task3)
-project1.addTask(task4)
+if (loadedProjects.length > 0) {
+    projects = loadedProjects;
+} else {
+    // Fallback: only create demo data if nothing is saved
+    let project1 = new Project("Chores");
+    let project2 = new Project("Daily");
+    let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "2025-09-25", project1.title);
+    let task2 = new Task("test task", "Small task that I need to do.", "Low", "2025-09-30", project1.title);
+    let task3 = new Task("good task", "Small task that I need to do.", "Low", "2025-10-01", project1.title);
+    let task4 = new Task("bad task", "Small task that I need to do.", "Low", "2025-09-20", project1.title);
+    let task5 = new Task("proj2 task", "Small task that I need to do. chat chat", "Low", "2025-10-04", project2.title);
 
-project2.addTask(task5)
+    project1.addTask(task1);
+    project1.addTask(task2);
+    project1.addTask(task3);
+    project1.addTask(task4);
 
-projects.push(project1)
-projects.push(project2)
-calendar.buildFromProjects(projects)
+    project2.addTask(task5);
 
+    projects.push(project1);
+    projects.push(project2);
+
+    saveProjects(); // save demo data
+}
+
+calendar.buildFromProjects(projects);
 gather_task_data()
 gather_project_data()
 display_driver()
