@@ -40,7 +40,7 @@ function dialog_open() {
 
     //projects dialog
     document.querySelector("#new_project").addEventListener("click", () =>{
-        modal_project.show()
+        modal_project.showModal()
     });
 
 }
@@ -184,6 +184,7 @@ function display_all_tasks(){
 //display daily tasks
 function display_today_tasks() {
     const date = new Date()
+    date.setDate(date.getDate() - 1);
     const curdate = date.toISOString().split('T')[0];
     calendar.getTasksByDate(curdate).forEach(task => {
         display_task(task);

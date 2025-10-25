@@ -3,6 +3,8 @@ let projects = []
 
 export {projects}
 
+import { Project, Task} from ".";
+
 // Saving projects
 export const saveProjects = () => {
     localStorage.setItem("projects", JSON.stringify(projects));
@@ -34,3 +36,10 @@ export const loadProjects = () => {
         return [];
     }
 }
+
+// --- Replace projects safely ---
+export const setProjects = (newProjects) => {
+    projects.length = 0;            // keep same reference
+    projects.push(...newProjects);  // fill with new data
+    localStorage.clear()
+};

@@ -3,15 +3,14 @@ import "./reminders.css"
 import "./dialog.css"
 
 import { display_driver} from "./displayDriver";
-import { projects } from "./localStorageFunc";
-import { saveProjects, loadProjects } from "./localStorageFunc";
+import { projects, saveProjects, loadProjects, setProjects } from "./localStorageFunc";
 
 export { calendar }
 import { display_task, display_projects} from "./displayDriver";
 
 
 //class prototypes
-class Task {
+export class Task {
     constructor(title, description, priority, date, category){
         this._title = title;
         this._description = description;
@@ -45,7 +44,7 @@ class Task {
     }
 }
 
-class Project {
+export class Project {
     constructor(title){
         this._title = title;
         this._tasks = [];
@@ -203,9 +202,8 @@ let calendar = new Calendar()
 let loadedProjects = loadProjects();
 
 if (loadedProjects.length > 0) {
-    projects = loadedProjects;
+    setProjects(loadedProjects);
 } else {
-    // Fallback: only create demo data if nothing is saved
     let project1 = new Project("Chores");
     let project2 = new Project("Daily");
     let task1 = new Task("A Simple Task", "Small task that I need to do.", "Low", "2025-09-25", project1.title);

@@ -99,5 +99,5 @@ dialog::backdrop {
 }
 
 .create_project {
-    height: auto;
+    height: 200px;
 }
