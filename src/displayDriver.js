@@ -145,15 +145,15 @@ export const display_projects = () => {
         const controlDiv = document.createElement("div");
         controlDiv.id = "control_side";
 
-        // edit icon
         const editIcon = document.createElement("img");
-        editIcon.id = "edit_icon";
+        editIcon.classList.add("edit_icon", "project_edit");
         editIcon.src = editImg;
+        editIcon.dataset.projectTitle = project.title;
 
-        // delete icon
         const deleteIcon = document.createElement("img");
-        deleteIcon.id = "delete_icon";
+        deleteIcon.classList.add("delete_icon", "project_delete");
         deleteIcon.src = deleteImg;
+        deleteIcon.dataset.projectTitle = project.title;
 
         // assemble
         controlDiv.appendChild(editIcon);

@@ -41,5 +41,4 @@ export const loadProjects = () => {
 export const setProjects = (newProjects) => {
     projects.length = 0;            // keep same reference
     projects.push(...newProjects);  // fill with new data
-    localStorage.clear()
 };
